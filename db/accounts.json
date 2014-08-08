@@ -1,0 +1,31 @@
+{
+  "_id":{"$oid":"000000000000000000000001"},
+  "name":"Bob Jones",
+  "color":"#ff0033",
+  "photo":"http://www.unf.edu/uploadedImages/aa/coggin/cmc/students/male_prof.jpg",
+  "pin":"1234",
+  "type":"checking",
+  "balance":8000.00,
+  "opened":{"$date":"2011-08-05T00:00:00.000-0500"}
+}
+{
+  "_id":{"$oid":"000000000000000000000002"},
+  "name":"Sara Smith",
+  "color":"#330044",
+  "photo":"http://scarfbusiness.com/wp-content/uploads/2014/03/what-is-considered-business-casual-attire.jpg",
+  "pin":"4567",
+  "type":"checking",
+  "balance":9674.63,
+  "opened":{"$date":"2013-06-05T00:00:00.000-0500"}
+}
+{
+  "_id":{"$oid":"000000000000000000000003"},
+  "name":"Jill Doe",
+  "color":"#5700ab",
+  "photo":"http://www.yalenclothing.com/images/products/2011924224117117w1000h1000uyalen/women-casual-fashion-dress.jpg",
+  "pin":"6789",
+  "type":"savings",
+  "balance":100.56,
+  "opened":{"$date":"2012-08-05T00:00:00.000-0500"}
+}
+
