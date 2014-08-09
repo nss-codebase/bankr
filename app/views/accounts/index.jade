@@ -1,0 +1,18 @@
+extends ../shared/template
+block content
+  h2 Accounts
+  table#accounts
+    thead
+      tr
+        th Name
+        th Balance
+        th Type
+        th Opened
+    tbody
+      each account in accounts
+        tr(style='background-color:#{account.color}')
+          td: a(href='/accounts/#{account._id}')= account.name
+          td $#{account.balance.toFixed(2)}
+          td= account.type
+          td= moment(account.opened).format('dddd, MMM Do YYYY')
+

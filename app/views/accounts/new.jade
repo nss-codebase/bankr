@@ -1,0 +1,14 @@
+extends ../shared/template
+block content
+  h2 New Account
+  form(method='post', action='/accounts')
+    input(name='name', type='text', placeholder='Bob Smith', autofocus=true)
+    input(name='color', type='color', value='#ff00ff')
+    input(name='photo', type='text', placeholder='http://image.com/bob.jpg')
+    input(name='pin', type='text', placeholder='4852')
+    input(name='balance', type='number', placeholder='1500')
+    select(name='type')
+      option Checking
+      option Savings
+    button Add Account
+

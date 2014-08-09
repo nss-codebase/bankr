@@ -22,7 +22,7 @@ Transfer.create = function(o, cb){
 Transfer.query = function(query, cb){
   var property = Object.keys(query)[0];
   query[property] = Mongo.ObjectID(query[property]);
-  Transfer.collection.find(query).toArray(cb);
+  Transfer.collection.find(query).sort({date:1}).toArray(cb);
 };
 
 module.exports = Transfer;

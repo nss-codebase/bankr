@@ -1,0 +1,12 @@
+extends ../shared/template
+block content
+  h2 #{account.name}'s Transaction
+  form(method='post', action='/accounts/#{account._id}/transaction')
+    input(name='pin', type='text', placeholder='4852')
+    input(name='amount', type='number', placeholder='1500')
+    label Deposit
+    input(type='radio', name='type', value='deposit')
+    label Withdraw
+    input(type='radio', name='type', value='withdraw')
+    button Add Transaction
+

@@ -1,0 +1,75 @@
+extends ../shared/template
+block content
+  h2 Account Information
+
+  ul
+    li: a(href='/accounts/#{account._id}/transaction') New Transaction
+    li: a(href='/accounts/#{account._id}/transfer') New Transfer
+
+  ul
+    li= account._id
+    li= account.name
+    li= account.balance
+    li= account.color
+    li= account.photo
+    li= account.opened
+    li= account.type
+
+  h2 Transactions
+  table#transactions
+    thead
+      tr
+        th Id
+        th Date
+        th Type
+        th Amount
+        th Fee
+    tbody
+      each transaction in account.transactions
+        tr(style='background-color:#{transaction.type == "deposit" ? "#01FF70" : "#FF851B"}')
+          td= transaction._id
+          td= moment(transaction.date).format('YYYY-MM-DD@hh:mm:ss')
+          td= transaction.type
+          td $#{transaction.amount.toFixed(2)}
+          td $#{transaction.fee.toFixed(2)}
+
+  h2 Transfers - Sent
+  table#transfersOut
+    thead
+      tr
+        th Id
+        th Date
+        th From
+        th To
+        th Amount
+        th Fee
+    tbody
+      each out in account.transfersOut
+        tr(style='background-color:#FF851B')
+          td= out._id
+          td= moment(out.date).format('YYYY-MM-DD@hh:mm:ss')
+          td= account.name
+          td: a(href='/accounts/#{out.toId}')=  _.find(accounts, function(a){return a._id.toString() === out.toId.toString()}).name
+          td $#{out.amount.toFixed(2)}
+          td $#{out.fee.toFixed(2)}
+
+  h2 Transfers - Received
+  table#transfersIn
+    thead
+      tr
+        th Id
+        th Date
+        th From
+        th To
+        th Amount
+        th Fee
+    tbody
+      each rx in account.transfersIn
+        tr(style='background-color:#01FF70')
+          td= rx._id
+          td= moment(rx.date).format('YYYY-MM-DD@hh:mm:ss')
+          td: a(href='/accounts/#{rx.fromId}')=  _.find(accounts, function(a){return a._id.toString() === rx.fromId.toString()}).name
+          td= account.name
+          td $#{rx.amount.toFixed(2)}
+          td $#{rx.fee.toFixed(2)}
+

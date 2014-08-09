@@ -71,7 +71,7 @@ describe('Account', function(){
   describe('#transaction', function(){
     it('should create a transaction - deposit', function(done){
       Account.findById('000000000000000000000001', function(err, account){
-        account.addTransaction({type:'deposit', pin:'1234', amount:'100'}, function(err, transaction){
+        account.transaction({type:'deposit', pin:'1234', amount:'100'}, function(err, transaction){
           expect(account.balance).to.equal(8100);
           expect(transaction.date).to.be.instanceof(Date);
           expect(transaction.type).to.equal('deposit');
@@ -85,7 +85,7 @@ describe('Account', function(){
 
     it('should not create a transaction - bad pin', function(done){
       Account.findById('000000000000000000000001', function(err, account){
-        account.addTransaction({type:'deposit', pin:'2341', amount:'100'}, function(err, transaction){
+        account.transaction({type:'deposit', pin:'2341', amount:'100'}, function(err, transaction){
           expect(transaction).to.be.undefined;
           done();
         });
@@ -94,7 +94,7 @@ describe('Account', function(){
 
     it('should create a transaction - withdraw', function(done){
       Account.findById('000000000000000000000001', function(err, account){
-        account.addTransaction({type:'withdraw', pin:'1234', amount:'100'}, function(err, transaction){
+        account.transaction({type:'withdraw', pin:'1234', amount:'100'}, function(err, transaction){
           expect(account.balance).to.equal(7900);
           expect(transaction.amount).to.equal(100);
           expect(transaction.fee).to.equal(0);
@@ -105,7 +105,7 @@ describe('Account', function(){
 
     it('should create a transaction - withdraw with fee', function(done){
       Account.findById('000000000000000000000001', function(err, account){
-        account.addTransaction({type:'withdraw', pin:'1234', amount:'10000'}, function(err, transaction){
+        account.transaction({type:'withdraw', pin:'1234', amount:'10000'}, function(err, transaction){
           expect(account.balance).to.equal(-2050);
           expect(transaction.amount).to.equal(10000);
           expect(transaction.fee).to.equal(50);

@@ -21,7 +21,7 @@ Transaction.create = function(o, cb){
 
 Transaction.query = function(query, cb){
   query.accountId = Mongo.ObjectID(query.accountId);
-  Transaction.collection.find(query).toArray(cb);
+  Transaction.collection.find(query).sort({date:1}).toArray(cb);
 };
 
 module.exports = Transaction;

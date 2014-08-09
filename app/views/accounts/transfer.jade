@@ -1,0 +1,12 @@
+extends ../shared/template
+block content
+  h2 #{account.name}'s Wire Transfer
+  form(method='post', action='/accounts/#{account._id}/transfer')
+    input(name='pin', type='text', placeholder='4852')
+    input(name='amount', type='number', placeholder='1500')
+    select(name='toId')
+      each act in accounts
+        if act._id.toString() != account._id.toString()
+          option(value=act._id)= act.name
+    button Add Transfer
+
